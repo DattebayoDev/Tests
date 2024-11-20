@@ -72,35 +72,26 @@ class Counter {
 
 // Exercise Set 4: Async Operations
 // Time: ~30 mins
-class DataFetcher {
-  // TODO: Implement methods that:
-  // 1. Fetch data with timeout
-  // 2. Retry failed requests
-  // 3. Cache successful responses
-  // 4. Handle concurrent requests
+/*
+Exercise: Build a DataFetcher class that handles API requests
 
-  async fetchWithTimeout(url, timeout) {
-    try {
-      const fetchPromise = fetch(url)
+Part 1: fetchWithTimeout method
+- Create a method that fetches data but times out if it takes too long
+- The method should take two parameters: url and timeout (in milliseconds)
+- If the fetch takes longer than timeout, throw an error "Request Timed Out"
+- Return the fetched data as JSON
 
-      const timeoutPromise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          reject(new Error("Request Timed Out"))
-        }, timeout)
-      })
+Example usage:
+const fetcher = new DataFetcher();
+fetcher.fetchWithTimeout('https://api.example.com/data', 5000) // 5 second timeout
 
-      const response = await Promise.race([fetchPromise, timeoutPromise])
-      const data = await response.json()
-      return data
-    } catch (error) {}
+Hints:
+- Use Promise.race() to compete between fetch and timeout
+- Remember to handle errors with try/catch
+*/
 
-  }
-}
-const fetcher = new DataFetcher()
 
-fetcher.fetchWithTimeout('https://jsonplaceholder.typicode.com/todos/1', 5000)
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+
 // Exercise Set 5: Event System
 // Time: ~40 mins
 class EventEmitter {
